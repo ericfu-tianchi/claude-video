@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tianchi Fu — Showreel 2026</title>
+<style>
+@font-face { font-family: 'Archivo'; src: url('node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2') format('woff2-variations'); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: 'Archivo'; font-style: italic; src: url('node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-italic.woff2') format('woff2-variations'); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: 'Mono'; src: url('node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2'); font-weight: 400; }
+@font-face { font-family: 'Mono'; src: url('node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2'); font-weight: 500; }
+@font-face { font-family: 'Mono'; src: url('node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2'); font-weight: 700; }
+:root { --ink:#0C0C0D; --paper:#ECEAE3; --orange:#FF4D1A; --blue:#2F3BFF; --lime:#D4FF3A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1920px; height:1080px; overflow:hidden; background:#000; }
+#stage { position:absolute; inset:0; width:1920px; height:1080px; overflow:hidden; background:var(--ink); }
+#stage > * { position:absolute; inset:0; }
+canvas { display:block; }
+.scene { position:absolute; inset:0; display:none; }
+.disp { font-family:'Archivo'; font-weight:900; font-stretch:125%; line-height:0.86; letter-spacing:-0.02em; white-space:nowrap; text-transform:uppercase; }
+.mono { font-family:'Mono'; font-weight:500; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; }
+.mask { display:inline-block; overflow:hidden; vertical-align:top; }
+.mask > span { display:inline-block; will-change:transform; }
+.abs { position:absolute; }
+#grain { mix-blend-mode:overlay; opacity:.11; pointer-events:none; }
+#vignette { background:radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.35) 100%); pointer-events:none; }
+</style>
+<script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/" } }</script>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <canvas id="gl" width="1920" height="1080"></canvas>
+  <canvas id="c2d" width="1920" height="1080"></canvas>
+  <div id="dom"></div>
+  <div id="wipe"></div>
+  <div id="hud"></div>
+  <canvas id="grain" width="960" height="540" style="width:1920px;height:1080px"></canvas>
+  <div id="vignette"></div>
+  <div id="flash" style="background:#fff;opacity:0"></div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

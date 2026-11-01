@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+References/
+**/src/build/frames/
+**/src/out/
+**/src/fonts/
+# full-quality masters go to GitHub Releases (over the 100 MB file limit)
+Shanghai Stop-Motion/Claude眼中的上海.mp4
+Showreel/Tianchi_Fu_Showreel_2026.mp4

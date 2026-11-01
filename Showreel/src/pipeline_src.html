@@ -1,0 +1,123 @@
+<title>Showreel 制作流程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow column that reads top to bottom like the reel's own timeline — six steps, one loop. */
+:root {
+  --bg: #ECEAE3; --fg: #0C0C0D; --muted: #6B6A66; --line: rgba(12,12,13,.14);
+  --orange: #FF4D1A; --blue: #2F3BFF; --lime: #D4FF3A; --card: #F6F5F0;
+  --display: 'Archivo', 'Arial Black', sans-serif;
+  --body: 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0C0C0D; --fg: #ECEAE3; --muted: #94938E; --line: rgba(236,234,227,.16); --card: #161618; --blue: #6E78FF; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #0C0C0D; --fg: #ECEAE3; --muted: #94938E; --line: rgba(236,234,227,.16); --card: #161618; --blue: #6E78FF; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.65; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 56px 80px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--display); font-weight: 900; font-stretch: 125%; font-size: clamp(40px, 8vw, 76px); line-height: .92; letter-spacing: -.02em; margin: 14px 0 18px; text-transform: uppercase; text-wrap: balance; }
+h1 .dot { color: var(--orange); }
+.lede { max-width: 38em; color: var(--muted); margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 28px 0 0; padding: 16px 0; border-block: 1px solid var(--line); font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.stats b { font-weight: 500; color: var(--fg); }
+.stats span { color: var(--muted); }
+ol { list-style: none; padding: 0; margin: 48px 0 0; display: grid; gap: 0; }
+li.step { display: grid; grid-template-columns: 64px 1fr; gap: 0 20px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.n { font-family: var(--display); font-weight: 900; font-stretch: 125%; font-size: 34px; line-height: 1; color: var(--orange); }
+.step:nth-child(2) .n { color: var(--blue); } .step:nth-child(4) .n { color: var(--blue); } .step:nth-child(6) .n { color: var(--blue); }
+.step h2 { font-size: 20px; font-weight: 700; margin: 2px 0 6px; line-height: 1.3; }
+.step h2 small { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); letter-spacing: .06em; margin-left: 8px; text-transform: uppercase; }
+.step p { margin: 0; max-width: 36em; }
+.step .body { min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chip { font-family: var(--mono); font-size: 12px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; box-shadow: 0 0 0 1px var(--line); }
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+.thumbs figure { margin: 0; min-width: 0; }
+.thumbs img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 4px; }
+.thumbs figcaption { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 4px; }
+.loop { margin-top: 40px; padding: 22px 22px; background: var(--card); border-radius: 6px; }
+.loop h3 { margin: 0 0 12px; font-size: 16px; }
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; }
+.flow .b { padding: 6px 12px; border-radius: 4px; background: var(--bg); border: 1px solid var(--line); }
+.flow .b.hot { background: var(--lime); color: #0C0C0D; border-color: transparent; }
+.flow .arr { color: var(--muted); }
+.loop p { margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+.foot { margin-top: 36px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 560px) { li.step { grid-template-columns: 44px 1fr; gap: 0 12px; } .n { font-size: 26px; } .thumbs { grid-template-columns: repeat(2, 1fr); } }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Tianchi Fu · Showreel ’26 · 幕后</div>
+  <h1>从一段参考<br>到一支 Showreel<span class="dot">.</span></h1>
+  <p class="lede">没有用 AE，也没有用素材库。整支片子的每一帧都是用代码“画”出来的，音乐也是。下面是从拿到需求到出片的完整流程。</p>
+  <div class="stats">
+    <div><b>43s</b> <span>时长</span></div>
+    <div><b>60fps</b> <span>帧率</span></div>
+    <div><b>2,580</b> <span>帧</span></div>
+    <div><b>9</b> <span>幕</span></div>
+    <div><b>0</b> <span>外部素材</span></div>
+  </div>
+
+  <ol>
+    <li class="step"><div class="n">1</div><div class="body">
+      <h2>拆解参考视频<small>Look</small></h2>
+      <p>把你给的录屏逐帧拆开，提炼出它“专业感”的来源：每一拍切一次画面，大字号排版配角落里的小字信息，配色克制，再加点阵、立方体、粒子、金属 3D 这几种手法。</p>
+      <div class="chips">
+        <span class="chip"><i class="sw" style="background:#FF4D1A"></i>橙</span>
+        <span class="chip"><i class="sw" style="background:#2F3BFF"></i>蓝</span>
+        <span class="chip"><i class="sw" style="background:#D4FF3A"></i>荧光绿</span>
+        <span class="chip"><i class="sw" style="background:#0C0C0D"></i>墨黑</span>
+        <span class="chip"><i class="sw" style="background:#ECEAE3"></i>米白</span>
+      </div>
+    </div></li>
+
+    <li class="step"><div class="n">2</div><div class="body">
+      <h2>从作品集里找故事<small>Story</small></h2>
+      <p>读了 tianchi-fu.com 上的每个项目页，提炼出三件事：计算机背景走到 UX 再到产品；六个代表项目；以及你自己写的那句“科技不只是冰冷的代码，而是带给人快乐的东西”。这句话成了片子的情绪落点：<b>NOT JUST COLD CODE → BUT JOY.</b></p>
+    </div></li>
+
+    <li class="step"><div class="n">3</div><div class="body">
+      <h2>写分镜，每一幕展示一种能力<small>Plan</small></h2>
+      <p>按 120 BPM 的节拍切成 9 幕：开场字效、生成式点阵、3D 立方体、动态排版墙、粒子、名字、六个项目、价值观、联系方式。每个转场都接住上一幕的元素，比如点阵最后变成方块，方块再长成 3D。</p>
+      <div class="thumbs">
+        <figure><img src="{{1.5}}" alt="开场：MEETS 与 Figma 选框"><figcaption>开场字效</figcaption></figure>
+        <figure><img src="{{6.0}}" alt="生成式点阵"><figcaption>点阵系统</figcaption></figure>
+        <figure><img src="{{9.8}}" alt="3D 立方体场"><figcaption>3D 场景</figcaption></figure>
+        <figure><img src="{{13.2}}" alt="MOTION 排版墙"><figcaption>动态排版</figcaption></figure>
+        <figure><img src="{{18.6}}" alt="粒子漩涡"><figcaption>粒子</figcaption></figure>
+        <figure><img src="{{26.6}}" alt="项目卡：NeuroBot"><figcaption>项目展示</figcaption></figure>
+        <figure><img src="{{31.0}}" alt="项目卡：SubTension"><figcaption>项目展示</figcaption></figure>
+        <figure><img src="{{37.4}}" alt="BUT JOY."><figcaption>情绪落点</figcaption></figure>
+      </div>
+    </div></li>
+
+    <li class="step"><div class="n">4</div><div class="body">
+      <h2>用代码画出每一帧<small>Build</small></h2>
+      <p>整支片子是一个网页。每个画面都写成“给我一个时间点，我就告诉你这一刻长什么样”。排版、点阵、3D 物体、手机界面都在浏览器里实时生成，所以任何一帧都能精确复现，改一个参数全片同步更新。</p>
+    </div></li>
+
+    <li class="step"><div class="n">5</div><div class="body">
+      <h2>配乐和音效同样用代码合成<small>Sound</small></h2>
+      <p>鼓、贝斯、和弦、转场的呼啸声、打字声、界面提示音，全部由程序生成，并且严格对齐画面上的每一个切点和动作。</p>
+    </div></li>
+
+    <li class="step"><div class="n">6</div><div class="body">
+      <h2>逐帧输出，合成成片<small>Render</small></h2>
+      <p>用无界面浏览器把 2,580 帧逐一截下来，接成 60fps 视频，再混入音乐，音量标准化到主流平台的响度。全片渲染一次大约 3 分钟。</p>
+    </div></li>
+  </ol>
+
+  <div class="loop">
+    <h3>中间反复做的一件事：先看静帧，再出全片</h3>
+    <div class="flow">
+      <span class="b">改代码</span><span class="arr">→</span>
+      <span class="b">抽关键帧拼成一张总览图</span><span class="arr">→</span>
+      <span class="b">肉眼挑问题</span><span class="arr">→</span>
+      <span class="b hot">全片渲染</span>
+    </div>
+    <p>比如发现 3D 开场一帧太灰、结尾大字被裁掉、项目标题偏小，都是在总览图里发现、改完再出片的。</p>
+  </div>
+
+  <div class="foot">成片：Tianchi_Fu_Showreel_2026.mp4（母版）· _web.mp4（投递版）</div>
+</div>
